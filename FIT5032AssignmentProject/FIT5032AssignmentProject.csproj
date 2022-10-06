@@ -174,9 +174,39 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210052353590_Initial.cs" />
+    <Compile Include="Migrations\202210052353590_Initial.designer.cs">
+      <DependentUpon>202210052353590_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210060021030_addTherapist.cs" />
+    <Compile Include="Migrations\202210060021030_addTherapist.designer.cs">
+      <DependentUpon>202210060021030_addTherapist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210060035252_addPatient.cs" />
+    <Compile Include="Migrations\202210060035252_addPatient.designer.cs">
+      <DependentUpon>202210060035252_addPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210060042216_addAdmin.cs" />
+    <Compile Include="Migrations\202210060042216_addAdmin.designer.cs">
+      <DependentUpon>202210060042216_addAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210060349294_generalupdate.cs" />
+    <Compile Include="Migrations\202210060349294_generalupdate.designer.cs">
+      <DependentUpon>202210060349294_generalupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210060916326_addOrder.cs" />
+    <Compile Include="Migrations\202210060916326_addOrder.designer.cs">
+      <DependentUpon>202210060916326_addOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderRating.cs" />
+    <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Therapist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,6 +282,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202210052353590_Initial.resx">
+      <DependentUpon>202210052353590_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210060021030_addTherapist.resx">
+      <DependentUpon>202210060021030_addTherapist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210060035252_addPatient.resx">
+      <DependentUpon>202210060035252_addPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210060042216_addAdmin.resx">
+      <DependentUpon>202210060042216_addAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210060349294_generalupdate.resx">
+      <DependentUpon>202210060349294_generalupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210060916326_addOrder.resx">
+      <DependentUpon>202210060916326_addOrder.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -29,5 +29,15 @@ namespace FIT5032AssignmentProject.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Therapist> Therapists { get; set; }
+
+        public DbSet<Patient> Patients { get; set; }
+
+        public DbSet<Admin> Admins { get; set; }
+
+        public DbSet<OrderRating> OrderRatings { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
     }
 }
