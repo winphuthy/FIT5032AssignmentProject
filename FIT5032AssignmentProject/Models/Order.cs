@@ -12,14 +12,5 @@ namespace FIT5032AssignmentProject.Models
 
         [Required] [ForeignKey("Patient")] public int PatientId { get; set; }
 
-        public Patient Patient { get; set; }
-
-        [Required] [ForeignKey("Therapist")] public int TherapistId { get; set; }
-
-        public Therapist Therapist { get; set; }
-
-        [Required] [ForeignKey("OrderRating")] public int RatingId { get; set; }
-
-        public OrderRating OrderRating { get; set; }
     }
 }
