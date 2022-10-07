@@ -1,0 +1,49 @@
+﻿@model FIT5032AssignmentProject.Models.OrderRating
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>OrderRating</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RatingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RatingTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

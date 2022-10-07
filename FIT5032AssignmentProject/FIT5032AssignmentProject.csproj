@@ -169,8 +169,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderRatingsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\TherapistsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,6 +204,26 @@
     <Compile Include="Migrations\202210060916326_addOrder.designer.cs">
       <DependentUpon>202210060916326_addOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210070121513_orderRatingNoRequired.cs" />
+    <Compile Include="Migrations\202210070121513_orderRatingNoRequired.designer.cs">
+      <DependentUpon>202210070121513_orderRatingNoRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210070131048_rebuildOrderRelationship.cs" />
+    <Compile Include="Migrations\202210070131048_rebuildOrderRelationship.designer.cs">
+      <DependentUpon>202210070131048_rebuildOrderRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210070134509_updateOrderRating.cs" />
+    <Compile Include="Migrations\202210070134509_updateOrderRating.designer.cs">
+      <DependentUpon>202210070134509_updateOrderRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210070510218_addService.cs" />
+    <Compile Include="Migrations\202210070510218_addService.designer.cs">
+      <DependentUpon>202210070510218_addService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202210070530109_updateOrder.cs" />
+    <Compile Include="Migrations\202210070530109_updateOrder.designer.cs">
+      <DependentUpon>202210070530109_updateOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -206,6 +232,7 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Therapist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -266,6 +293,36 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Therapists\Create.cshtml" />
+    <Content Include="Views\Therapists\Delete.cshtml" />
+    <Content Include="Views\Therapists\Details.cshtml" />
+    <Content Include="Views\Therapists\Edit.cshtml" />
+    <Content Include="Views\Therapists\Index.cshtml" />
+    <Content Include="Views\Admins\Create.cshtml" />
+    <Content Include="Views\Admins\Delete.cshtml" />
+    <Content Include="Views\Admins\Details.cshtml" />
+    <Content Include="Views\Admins\Edit.cshtml" />
+    <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\OrderRatings\Create.cshtml" />
+    <Content Include="Views\OrderRatings\Delete.cshtml" />
+    <Content Include="Views\OrderRatings\Details.cshtml" />
+    <Content Include="Views\OrderRatings\Edit.cshtml" />
+    <Content Include="Views\OrderRatings\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Services\Create.cshtml" />
+    <Content Include="Views\Services\Delete.cshtml" />
+    <Content Include="Views\Services\Details.cshtml" />
+    <Content Include="Views\Services\Edit.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,6 +358,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210060916326_addOrder.resx">
       <DependentUpon>202210060916326_addOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210070121513_orderRatingNoRequired.resx">
+      <DependentUpon>202210070121513_orderRatingNoRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210070131048_rebuildOrderRelationship.resx">
+      <DependentUpon>202210070131048_rebuildOrderRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210070134509_updateOrderRating.resx">
+      <DependentUpon>202210070134509_updateOrderRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210070510218_addService.resx">
+      <DependentUpon>202210070510218_addService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210070530109_updateOrder.resx">
+      <DependentUpon>202210070530109_updateOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

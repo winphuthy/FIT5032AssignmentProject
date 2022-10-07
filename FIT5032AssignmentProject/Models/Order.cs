@@ -10,7 +10,15 @@ namespace FIT5032AssignmentProject.Models
 
         [Required] public DateTime OrderTime { get; set; }
 
+        [Required] [ForeignKey("Service")] public int ServiceId { get; set; }
+
+        public Service Service { get; set; }
+
         [Required] [ForeignKey("Patient")] public int PatientId { get; set; }
 
+        public Patient Patient { get; set; }
+
+        [MaxLength(300)]
+        public string Comment { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace FIT5032AssignmentProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection", false)
         {
         }
 
@@ -37,6 +37,8 @@ namespace FIT5032AssignmentProject.Models
         public DbSet<Admin> Admins { get; set; }
 
         public DbSet<OrderRating> OrderRatings { get; set; }
+
+        public DbSet<Service> Services { get; set; }
 
         public DbSet<Order> Orders { get; set; }
     }

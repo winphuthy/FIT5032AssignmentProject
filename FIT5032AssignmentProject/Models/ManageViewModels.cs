@@ -68,9 +68,7 @@ namespace FIT5032AssignmentProject.Models
 
     public class VerifyPhoneNumberViewModel
     {
-        [Required]
-        [Display(Name = "Code")]
-        public string Code { get; set; }
+        [Required] [Display(Name = "Code")] public string Code { get; set; }
 
         [Required]
         [Phone]
