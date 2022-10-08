@@ -56,8 +56,10 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/datetimepicker")
     <script type="text/javascript">
-    $(function () {
-        $('#create-dateTimePicker').datetimepicker();
-    });
+        $(function () {
+            $('#create-dateTimePicker').datetimepicker({
+                format: "DD MMMM YYYY"
+            });
+        });
     </script>
 }
