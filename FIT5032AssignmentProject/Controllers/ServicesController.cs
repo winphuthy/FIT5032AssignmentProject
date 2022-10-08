@@ -35,6 +35,7 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(service);
         }
 
@@ -50,7 +51,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,TherapistId,Description")] Service service)
+        public ActionResult Create([Bind(Include = "Id,Name,TherapistId,Address,Description")] Service service)
         {
             if (ModelState.IsValid)
             {
@@ -70,11 +71,13 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Service service = db.Services.Find(id);
             if (service == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.TherapistId = new SelectList(db.Therapists, "TherapistID", "FirstName", service.TherapistId);
             return View(service);
         }
@@ -84,7 +87,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,TherapistId,Description")] Service service)
+        public ActionResult Edit([Bind(Include = "Id,Name,TherapistId,Address,Description")] Service service)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +95,7 @@ namespace FIT5032AssignmentProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.TherapistId = new SelectList(db.Therapists, "TherapistID", "FirstName", service.TherapistId);
             return View(service);
         }
@@ -103,11 +107,13 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Service service = db.Services.Find(id);
             if (service == null)
             {
                 return HttpNotFound();
             }
+
             return View(service);
         }
 
@@ -128,6 +134,7 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

@@ -15,6 +15,8 @@ namespace FIT5032AssignmentProject.Models
 
         public Therapist Therapist { get; set; }
 
+        [Display(Name = "Service Location")] public string Address { get; set; }
+
         [MaxLength(300)] public string Description { get; set; }
     }
 }
