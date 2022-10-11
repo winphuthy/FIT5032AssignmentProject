@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FIT5032AssignmentProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserRolesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -20,19 +21,18 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: UserRoles
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            if (!User.IsInRole("Adimin"))
+            if (!User.IsInRole("Admin"))
             {
                 return HttpNotFound();
             }
+
             var item = db.Roles.ToList();
             return View(item);
         }
 
         // GET: UserRoles/CreateRoles
-        [Authorize(Roles = "Admin")]
         public ActionResult CreateRole()
         {
             return View();
@@ -40,7 +40,6 @@ namespace FIT5032AssignmentProject.Controllers
 
         // POST: UserRoles/CreateRoles
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult CreateRole(string RoleName)
         {
             try
@@ -59,14 +58,12 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: UserRoles/ManageUserRole
-        [Authorize(Roles = "Admin")]
         public ActionResult ManageUserRole()
         {
             return View();
         }
 
         // GET: UserRoles/EditRole
-        [Authorize(Roles = "Admin")]
         public ActionResult EditRole(string roleName)
         {
             var role = db.Roles.FirstOrDefault(r => r.Name == roleName);
@@ -75,7 +72,6 @@ namespace FIT5032AssignmentProject.Controllers
 
         // POST UserRoles/EditRole
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult EditRole(IdentityRole role)
         {
             try
@@ -90,7 +86,6 @@ namespace FIT5032AssignmentProject.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string rolename)
         {
             var role = db.Roles.FirstOrDefault(r => r.Name == rolename);
@@ -100,7 +95,6 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: UserRoles/AddUserRole
-        [Authorize(Roles = "Admin")]
         public ActionResult AddUserRole()
         {
             ViewBag.UserRole = db.Roles.ToList().Select(r => new SelectListItem {Value = r.Name, Text = r.Name})
@@ -113,7 +107,6 @@ namespace FIT5032AssignmentProject.Controllers
 
         // POST UserRoles/AddUserRole
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult AddUserRole(string email, string role)
         {
             try
@@ -130,11 +123,9 @@ namespace FIT5032AssignmentProject.Controllers
                 ViewBag.ErrorMessage = e.Message;
                 return View();
             }
-
         }
 
         // GET: UserRoles/SearchUser
-        [Authorize(Roles = "Admin")]
         public ActionResult SearchUser()
         {
             ViewBag.UserList = db.Users.ToList().Select(u => new SelectListItem {Value = u.Email, Text = u.Email})
@@ -144,7 +135,6 @@ namespace FIT5032AssignmentProject.Controllers
 
         // POST: UserRoles/SearchUser
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult SearchUser(string email)
         {
             try
@@ -162,7 +152,6 @@ namespace FIT5032AssignmentProject.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult DeleteUserRole(string email, string role)
         {
             var user = userManager.FindByEmail(email);

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<FIT5032AssignmentProject.Models.Service>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped table-bordered" id="orders-table">
+
+    <div id="map"></div>
+
+    <br/>
+
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Therapist.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Therapist.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+    <tfoot>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Therapist.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+    </tfoot>
+
+</table>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document).ready(function () {
+            $('#orders-table').DataTable();
+        });
+    </script>
+    <style>
+        #map { height: 500px }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    @Scripts.Render("~/bundles/maps")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9RWcr3Dc_EdgOlOm7sCRm_mHV7LVezN0&callback=initMap&v=weekly"defer></script>
+
+}

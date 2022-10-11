@@ -33,6 +33,10 @@ namespace FIT5032AssignmentProject
                 "~/Scripts/bootstrap-datetimepicker.min.js"
                 ));
 
+            // GoogleMap Dependency
+            bundles.Add(new ScriptBundle("~/bundles/maps").Include(
+                "~/Scripts/GoogleMap/maps.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/site.css",

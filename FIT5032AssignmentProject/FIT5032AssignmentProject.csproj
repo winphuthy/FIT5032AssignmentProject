@@ -175,6 +175,7 @@
     <Compile Include="Controllers\OrderRatingsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\PatientUserPageController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\TherapistsController.cs" />
     <Compile Include="Controllers\UserRolesController.cs" />
@@ -572,6 +573,7 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\GoogleMap\maps.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -656,6 +658,8 @@
     <Content Include="Views\UserRoles\AddUserRole.cshtml" />
     <Content Include="Views\UserRoles\ManageUserRole.cshtml" />
     <Content Include="Views\UserRoles\SearchUser.cshtml" />
+    <Content Include="Views\PatientUserPage\Index.cshtml" />
+    <Content Include="Views\PatientUserPage\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

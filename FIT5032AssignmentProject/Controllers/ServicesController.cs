@@ -10,6 +10,7 @@ using FIT5032AssignmentProject.Models;
 
 namespace FIT5032AssignmentProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ServicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
