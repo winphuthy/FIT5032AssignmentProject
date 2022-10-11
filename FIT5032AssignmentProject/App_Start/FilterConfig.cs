@@ -8,6 +8,7 @@ namespace FIT5032AssignmentProject
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }

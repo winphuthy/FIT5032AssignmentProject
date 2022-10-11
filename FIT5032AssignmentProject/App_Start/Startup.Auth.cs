@@ -54,15 +54,15 @@ namespace FIT5032AssignmentProject
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1478583105955221",
+               appSecret: "1a9d754b71353a373be9875cb3c25fcd");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "903278975265-h7favd00lsa5iuhmqn6u3aq968nf195o.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }

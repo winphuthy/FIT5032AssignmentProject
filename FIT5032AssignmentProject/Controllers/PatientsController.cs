@@ -15,12 +15,18 @@ namespace FIT5032AssignmentProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Patients
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
+            if (!User.IsInRole("Patient"))
+            {
+                return HttpNotFound();
+            }
             return View(db.Patients.ToList());
         }
 
         // GET: Patients/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +42,7 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: Patients/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +53,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "PatientID,FirstName,LastName,Dob")] Patient patient)
         {
             if (ModelState.IsValid)
@@ -59,6 +67,7 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: Patients/Edit/5
+        [Authorize(Roles = "Patient")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +87,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "PatientID,FirstName,LastName,Dob")] Patient patient)
         {
             if (ModelState.IsValid)
@@ -90,6 +100,7 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: Patients/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +118,7 @@ namespace FIT5032AssignmentProject.Controllers
         // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
