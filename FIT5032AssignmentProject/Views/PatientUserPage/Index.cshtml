@@ -16,10 +16,11 @@
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Therapist.FirstName)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @* @Html.DisplayNameFor(model => model.Therapist.FirstName) *@
+            Therapist Name
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address)
@@ -35,10 +36,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Therapist.FirstName)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Therapist.FirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)

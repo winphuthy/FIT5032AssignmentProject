@@ -1,5 +1,5 @@
 ﻿let xmlHttp = new XMLHttpRequest();
-xmlHttp.open("Get", "GetServices", false);
+xmlHttp.open("Get", "patientuserpage/GetServices", false);
 xmlHttp.send(null);
 let services = JSON.parse(xmlHttp.responseText);
 
@@ -50,6 +50,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
+const icon = "https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png";
+
 function geolocating(map, service) {
     let geocoder = new google.maps.Geocoder();
     let content = "<h4>" + service.Name + "<h4><br/><p>" + service.Description + "</p>"
@@ -59,7 +61,9 @@ function geolocating(map, service) {
     geocoder.geocode({ address: service.Address }, function (result, status) {
         if (status === "OK") {
             var marker = new google.maps.Marker({
+                icon: icon,
                 map: map,
+                animation: google.maps.Animation.DROP,
                 position: result[0].geometry.location
             })
         }
@@ -68,6 +72,7 @@ function geolocating(map, service) {
         });
     });
 }
+
 
 window.initMap = initMap;
 
