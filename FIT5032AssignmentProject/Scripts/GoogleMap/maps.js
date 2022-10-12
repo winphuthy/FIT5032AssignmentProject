@@ -38,7 +38,42 @@ function initMap() {
         console.log(current);
         geolocating(map, current);
     })
+
+    // Place Autocomplete
+
+    const autocomplete = new google.maps.places.Autocomplete(startPoint);
+    autocomplete.bindTo("bounds", map);
+
+    // routing
+
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const directionsService = new google.maps.DirectionsService();
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(
+        document.getElementById("sidebar")
+    );
+    let getDirection = document.getElementById("getDirection");
+
+    getDirection.addEventListener("click", function () {
+        let mode = document.getElementById("mode");
+        directionsService.route({
+            origin: {
+                query: document.getElementById("startPoint").value
+            },
+            destination: {
+                query: document.getElementById("endPoint").value
+            },
+            travelMode: google.maps.TravelMode[mode.value]
+        }, (result, status) => {
+            if (status === "OK") {
+                directionsRenderer.setDirections(result);
+            } else {
+                window.alert("Fail to routing " + status);
+            }
+        });
+    })
 }
+
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
@@ -50,7 +85,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
-const icon = "https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png";
 
 function geolocating(map, service) {
     let geocoder = new google.maps.Geocoder();
@@ -72,6 +106,9 @@ function geolocating(map, service) {
         });
     });
 }
+
+const icon = "https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png";
+
 
 
 window.initMap = initMap;
