@@ -3,6 +3,7 @@ using FIT5032AssignmentProject.Models;
 using System.Linq;
 using System.Web.Mvc;
 using System.Net;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032AssignmentProject.Controllers
 {
@@ -25,7 +26,6 @@ namespace FIT5032AssignmentProject.Controllers
             }
 
             Service service = db.Services.Include(e => e.Therapist).SingleOrDefault();
-            ViewBag.Id = service.Id;
 
             if (service == null)
             {
@@ -41,5 +41,11 @@ namespace FIT5032AssignmentProject.Controllers
 
             return new JsonResult {Data = positions, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
+
+        /*public JsonResult GetBooking()
+        {
+            string userId = User.Identity.GetUserId();
+            var booking = db.Orders.Where(o => o.Patient.PatientID);
+        }*/
     }
 }
