@@ -9,7 +9,7 @@ namespace FIT5032AssignmentProject.Models
     public class Therapist
     {
         [Key] public int TherapistID { get; set; }
-
+        public string userId { get; set; }
         [Required] [MaxLength(30)] public string FirstName { get; set; }
         [Required] [MaxLength(30)] public string LastName { get; set; }
 

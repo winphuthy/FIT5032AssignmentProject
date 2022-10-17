@@ -37,11 +37,18 @@ namespace FIT5032AssignmentProject
             bundles.Add(new ScriptBundle("~/bundles/maps").Include(
                 "~/Scripts/GoogleMap/maps.js"));
 
+            // Fullcalendar Dependency
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+                "~/Scripts/moment.min.js",
+                "~/Scripts/fullcalendar.min.js",
+                "~/Scripts/fullcalendar/userOrderCalendar.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/site.css",
                 "~/Content/DataTables/css/dataTables.bootstrap.min.css",
-                "~/Content/bootstrap-datetimepicker.min.css"));
+                "~/Content/bootstrap-datetimepicker.min.css",
+                "~/Content/fullcalendar.min.css"));
         }
     }
 }

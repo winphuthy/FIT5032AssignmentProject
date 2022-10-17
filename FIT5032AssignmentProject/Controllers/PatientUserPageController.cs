@@ -25,7 +25,7 @@ namespace FIT5032AssignmentProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Service service = db.Services.Include(e => e.Therapist).SingleOrDefault();
+            Service service = db.Services.Include(s => s.Therapist).SingleOrDefault(s => s.Id == id);
 
             if (service == null)
             {
@@ -35,6 +35,14 @@ namespace FIT5032AssignmentProject.Controllers
             return View(service);
         }
 
+        public ActionResult UserOrder()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var Bookings = db.Orders.Where(b => b.Patient.userId == userId).ToList();
+            return View(Bookings);
+        }
+
         public JsonResult GetServices()
         {
             var positions = db.Services.ToList();
@@ -42,10 +50,30 @@ namespace FIT5032AssignmentProject.Controllers
             return new JsonResult {Data = positions, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 
-        /*public JsonResult GetBooking()
+        public JsonResult GetBooking()
         {
             string userId = User.Identity.GetUserId();
-            var booking = db.Orders.Where(o => o.Patient.PatientID);
-        }*/
+
+            var Bookings = db.Orders.Include(o => o.Patient).Include(o => o.Service).Where(b => b.Patient.userId == userId).ToList();
+
+            return new JsonResult {Data = Bookings, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+        }
+
+        public ActionResult OrderDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Order order = db.Orders.Include(e => e.Patient).Include(e => e.Service).SingleOrDefault(o => o.Id == id);
+
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(order);
+        }
     }
 }

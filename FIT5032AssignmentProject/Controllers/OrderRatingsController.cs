@@ -10,6 +10,8 @@ using FIT5032AssignmentProject.Models;
 
 namespace FIT5032AssignmentProject.Controllers
 {
+    // [Authorize(Roles = "Admin")]
+
     public class OrderRatingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

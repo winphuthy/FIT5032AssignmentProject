@@ -10,6 +10,8 @@ using FIT5032AssignmentProject.Models;
 
 namespace FIT5032AssignmentProject.Controllers
 {
+    // [Authorize(Roles = "Admin")]
+
     public class OrdersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -29,7 +31,7 @@ namespace FIT5032AssignmentProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Order order = db.Orders.Include(e => e.Patient).Include(e=>e.Service).SingleOrDefault();
+            Order order = db.Orders.Include(e => e.Patient).Include(e=>e.Service).SingleOrDefault(o => o.Id == id);
 
             if (order == null)
             {

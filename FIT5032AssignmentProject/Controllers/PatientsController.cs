@@ -10,41 +10,38 @@ using FIT5032AssignmentProject.Models;
 
 namespace FIT5032AssignmentProject.Controllers
 {
+    // [Authorize(Roles = "Admin")]
     public class PatientsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Patients
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            if (!User.IsInRole("Patient"))
-            {
-                return HttpNotFound();
-            }
             return View(db.Patients.ToList());
         }
 
         // GET: Patients/Details/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Patient patient = db.Patients.Find(id);
             if (patient == null)
             {
                 return HttpNotFound();
             }
+
             return View(patient);
         }
 
         // GET: Patients/Create
-        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
@@ -53,8 +50,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "PatientID,FirstName,LastName,Dob")] Patient patient)
+        public ActionResult Create([Bind(Include = "PatientID,FirstName,LastName,Dob,UserId")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -67,18 +63,20 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: Patients/Edit/5
-        [Authorize(Roles = "Patient")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Patient patient = db.Patients.Find(id);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             if (patient == null)
             {
                 return HttpNotFound();
             }
+
             return View(patient);
         }
 
@@ -87,7 +85,6 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "PatientID,FirstName,LastName,Dob")] Patient patient)
         {
             if (ModelState.IsValid)
@@ -96,29 +93,30 @@ namespace FIT5032AssignmentProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(patient);
         }
 
         // GET: Patients/Delete/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Patient patient = db.Patients.Find(id);
             if (patient == null)
             {
                 return HttpNotFound();
             }
+
             return View(patient);
         }
 
         // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
@@ -133,6 +131,7 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

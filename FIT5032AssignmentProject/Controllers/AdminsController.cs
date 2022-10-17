@@ -10,6 +10,7 @@ using FIT5032AssignmentProject.Models;
 
 namespace FIT5032AssignmentProject.Controllers
 {
+    // [Authorize(Roles = "Admin")]
     public class AdminsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -27,17 +28,20 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Admin admin = db.Admins.Find(id);
             if (admin == null)
             {
                 return HttpNotFound();
             }
+
             return View(admin);
         }
 
         // GET: Admins/Create
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
@@ -46,7 +50,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AdminID,FirstName,LastName,Dob")] Admin admin)
+        public ActionResult Create([Bind(Include = "AdminID,FirstName,LastName,Dob,UserId")] Admin admin)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +69,14 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Admin admin = db.Admins.Find(id);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             if (admin == null)
             {
                 return HttpNotFound();
             }
+
             return View(admin);
         }
 
@@ -78,7 +85,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdminID,FirstName,LastName,Dob")] Admin admin)
+        public ActionResult Edit([Bind(Include = "AdminID,FirstName,LastName,Dob,UserId")] Admin admin)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,7 @@ namespace FIT5032AssignmentProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(admin);
         }
 
@@ -96,11 +104,13 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Admin admin = db.Admins.Find(id);
             if (admin == null)
             {
                 return HttpNotFound();
             }
+
             return View(admin);
         }
 
@@ -121,6 +131,7 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

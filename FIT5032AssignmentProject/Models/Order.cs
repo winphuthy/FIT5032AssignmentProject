@@ -8,7 +8,9 @@ namespace FIT5032AssignmentProject.Models
     {
         [Key] public int Id { get; set; }
 
-        [Required] public DateTime OrderTime { get; set; }
+        [Required]
+        [DisplayFormat(DataFormatString = "{0: dd MM yyyy h:mm tt}")]
+        public DateTime OrderTime { get; set; }
 
         [Required] [ForeignKey("Service")] public int ServiceId { get; set; }
 
@@ -18,7 +20,6 @@ namespace FIT5032AssignmentProject.Models
 
         public Patient Patient { get; set; }
 
-        [MaxLength(300)]
-        public string Comment { get; set; }
+        [MaxLength(300)] public string Comment { get; set; }
     }
 }

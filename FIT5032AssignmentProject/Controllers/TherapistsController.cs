@@ -10,37 +10,38 @@ using FIT5032AssignmentProject.Models;
 
 namespace FIT5032AssignmentProject.Controllers
 {
+    // [Authorize(Roles = "Admin")]
     public class TherapistsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Therapists
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Therapists.ToList());
         }
 
         // GET: Therapists/Details/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Therapist therapist = db.Therapists.Find(id);
             if (therapist == null)
             {
                 return HttpNotFound();
             }
+
             return View(therapist);
         }
 
         // GET: Therapists/Create
-        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
@@ -49,8 +50,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "TherapistID,FirstName,LastName,Dob")] Therapist therapist)
+        public ActionResult Create([Bind(Include = "TherapistID,FirstName,LastName,Dob,UserId")] Therapist therapist)
         {
             if (ModelState.IsValid)
             {
@@ -63,18 +63,20 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
         // GET: Therapists/Edit/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Therapist therapist = db.Therapists.Find(id);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             if (therapist == null)
             {
                 return HttpNotFound();
             }
+
             return View(therapist);
         }
 
@@ -83,8 +85,7 @@ namespace FIT5032AssignmentProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "TherapistID,FirstName,LastName,Dob")] Therapist therapist)
+        public ActionResult Edit([Bind(Include = "TherapistID,FirstName,LastName,Dob,UserId")] Therapist therapist)
         {
             if (ModelState.IsValid)
             {
@@ -92,29 +93,30 @@ namespace FIT5032AssignmentProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(therapist);
         }
 
         // GET: Therapists/Delete/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Therapist therapist = db.Therapists.Find(id);
             if (therapist == null)
             {
                 return HttpNotFound();
             }
+
             return View(therapist);
         }
 
         // POST: Therapists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Therapist therapist = db.Therapists.Find(id);
@@ -129,6 +131,7 @@ namespace FIT5032AssignmentProject.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }
