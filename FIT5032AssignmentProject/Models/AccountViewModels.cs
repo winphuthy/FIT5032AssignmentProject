@@ -64,6 +64,7 @@ namespace FIT5032AssignmentProject.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$", ErrorMessage = "Password must contain minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character")]
         [Display(Name = "Password")]
         public string Password { get; set; }
 

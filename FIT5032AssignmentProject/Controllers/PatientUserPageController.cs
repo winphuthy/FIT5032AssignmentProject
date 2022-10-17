@@ -54,7 +54,8 @@ namespace FIT5032AssignmentProject.Controllers
         {
             string userId = User.Identity.GetUserId();
 
-            var Bookings = db.Orders.Include(o => o.Patient).Include(o => o.Service).Where(b => b.Patient.userId == userId).ToList();
+            var Bookings = db.Orders.Include(o => o.Patient).Include(o => o.Service)
+                .Where(b => b.Patient.userId == userId).ToList();
 
             return new JsonResult {Data = Bookings, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
@@ -74,6 +75,14 @@ namespace FIT5032AssignmentProject.Controllers
             }
 
             return View(order);
+        }
+
+
+        public ActionResult Book()
+        {
+            ViewBag.PatientId = new SelectList(db.Patients, "PatientID", "FirstName");
+            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name");
+            return View();
         }
     }
 }
