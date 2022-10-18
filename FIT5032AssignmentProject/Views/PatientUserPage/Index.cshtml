@@ -80,9 +80,9 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new {id = item.Id})
+                    @Html.ActionLink("Details", "Details", new {id = item.Id}) |
                     
-                    @Html.ActionLink("Book", "Book")
+                    @Html.ActionLink("Book", "Book", new {id = item.Id})
                 </td>
             </tr>
         }
@@ -106,6 +106,11 @@
         </tfoot>
     </div>
 </table>
+
+
+<div>
+    @Html.ActionLink("My Orders", "MyOrder")
+</div>
 
 
 @section Scripts

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "AdminPageNavi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div>
+        @Html.ActionLink("User Roles Manager", "Index", "UserRoles")
+    </div>
+
+    <div>
+        @Html.ActionLink("Order Manager", "Index", "Orders")
+    </div>
+
+    <div>
+        @Html.ActionLink("Order Rating Manager", "Index", "OrderRatings")
+    </div>
+
+    <div>
+        @Html.ActionLink("Services Manager", "Index", "Services")
+    </div>
+
+    <div>
+        @Html.ActionLink("Patients Manager", "Index", "Patients")
+    </div>
+
+    <div>
+        @Html.ActionLink("Therapist Manager", "Index", "Therapists")
+    </div>
+</div>
+
+<h2>AdminPageNavi</h2>
+

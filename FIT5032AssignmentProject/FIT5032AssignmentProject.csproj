@@ -230,6 +230,7 @@
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\PatientUserPageController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TherapistsController.cs" />
     <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -822,6 +823,8 @@
     <Content Include="Views\PatientUserPage\UserOrder.cshtml" />
     <Content Include="Views\PatientUserPage\OrderDetails.cshtml" />
     <Content Include="Views\PatientUserPage\Book.cshtml" />
+    <Content Include="Views\PatientUserPage\MyOrder.cshtml" />
+    <Content Include="Views\Shared\AdminPageNavi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using FIT5032AssignmentProject.Models;
 using System.Linq;
 using System.Web.Mvc;
@@ -78,11 +79,54 @@ namespace FIT5032AssignmentProject.Controllers
         }
 
 
-        public ActionResult Book()
+        public ActionResult Book(int? id)
         {
-            ViewBag.PatientId = new SelectList(db.Patients, "PatientID", "FirstName");
-            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var service = db.Services.Where(s => s.Id == id).ToList();
+
+            if (service == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            string userId = User.Identity.GetUserId();
+            var patient = db.Patients.Where(p => p.userId == userId).ToList();
+
+
+            ViewBag.PatientId = new SelectList(patient, "PatientID", "FirstName");
+            ViewBag.ServiceId = new SelectList(service, "Id", "Name");
+            /*ViewBag.PatientId = new SelectList(db.Patients, "PatientID", "FirstName");
+            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name");*/
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Book([Bind(Include = "Id,OrderTime,ServiceId,PatientId,Comment")] Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Orders.Add(order);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.PatientId = new SelectList(db.Patients, "PatientID", "FirstName", order.PatientId);
+            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name", order.ServiceId);
+            return View(order);
+        }
+
+        public ActionResult MyOrder()
+        {
+            string userId = User.Identity.GetUserId();
+            var orders = db.Orders.Include(o => o.Patient).Include(o => o.Service).Where(o => o.Patient.userId == userId);
+            return View(orders.ToList());
+
         }
     }
 }
