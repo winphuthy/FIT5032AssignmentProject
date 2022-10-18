@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FIT5032AssignmentProject.Controllers
 {
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserRolesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

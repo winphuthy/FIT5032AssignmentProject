@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace FIT5032AssignmentProject.Controllers
 {
-    // [Authorize(Roles = "Patient")]
+    [Authorize(Roles = "Patient")]
     public class PatientUserPageController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
